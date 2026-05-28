@@ -14,10 +14,11 @@ const WORK_CATEGORIES = [
     title: 'Automotive',
     label: 'CANEPA AUTOMOTIVE',
     desc: 'Studio documentation of rare prototypes and historic vehicles.',
-    image: '/generated/automotive.jpg',
+    thumbnail: 'thumbnails/automotive.jpg',
     images: [
-      { url: '/generated/automotive.jpg', caption: 'Porsche 964 Carrera RS NGT — Macau Edition' },
-      { url: '/generated/automotive.jpg', caption: 'Classic automotive study' },
+      { url: 'photos/automotive/automotive.jpg', caption: 'Automotive — Original thumbnail' },
+      { url: 'photos/automotive/automotive.jpg', caption: 'Automotive — Studio profile' },
+      { url: 'photos/automotive/automotive.jpg', caption: 'Automotive — Detail study' },
     ]
   },
   {
@@ -25,9 +26,10 @@ const WORK_CATEGORIES = [
     title: 'Personal',
     label: 'INTIMATE WORK',
     desc: 'Quiet moments and personal explorations.',
-    image: '/generated/personal.jpg',
+    thumbnail: 'thumbnails/personal.jpg',
     images: [
-      { url: '/generated/personal.jpg', caption: 'Portrait in late light' },
+      { url: 'photos/personal/personal.jpg', caption: 'Personal — Original thumbnail' },
+      { url: 'photos/personal/personal.jpg', caption: 'Personal — Intimate moment' },
     ]
   },
   {
@@ -35,9 +37,10 @@ const WORK_CATEGORIES = [
     title: 'Military & Documentary',
     label: 'DEFENSE POW/MIA & BLM',
     desc: 'Forensic documentation and environmental storytelling.',
-    image: '/generated/military.jpg',
+    thumbnail: 'thumbnails/military.jpg',
     images: [
-      { url: '/generated/military.jpg', caption: 'Excavation site documentation' },
+      { url: 'photos/military/military.jpg', caption: 'Military — Original thumbnail' },
+      { url: 'photos/military/military.jpg', caption: 'Military — Field documentation' },
     ]
   },
   {
@@ -45,9 +48,10 @@ const WORK_CATEGORIES = [
     title: 'Graphic & Conceptual',
     label: 'AI + DESIGN EXPLORATIONS',
     desc: 'Generative concept development and visual systems.',
-    image: '/generated/graphic.jpg',
+    thumbnail: 'thumbnails/graphics.jpg',
     images: [
-      { url: '/generated/graphic.jpg', caption: 'Experimental type & image' },
+      { url: 'photos/graphic/graphics.jpg', caption: 'Graphic — Original thumbnail' },
+      { url: 'photos/graphic/graphics.jpg', caption: 'Graphic — Conceptual study' },
     ]
   }
 ];
@@ -154,6 +158,7 @@ function App() {
 
   return (
     <div className="bg-[#0a0a0a] text-[#f5f5f5] min-h-screen">
+      {/* NAV */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/95 backdrop-blur border-b border-white/10">
         <div className="max-w-7xl mx-auto px-8 py-5 flex justify-between items-center">
           <a href="#hero" className="text-3xl tracking-tight font-normal" style={{ fontFamily: 'Instrument Serif, Georgia, serif' }}>
@@ -172,6 +177,7 @@ function App() {
         </div>
       </nav>
 
+      {/* DARK CINEMATIC HERO */}
       <header id="hero" className="relative min-h-[100dvh] flex items-center justify-center bg-[#0a0a0a] overflow-hidden">
         <video ref={videoRef} className="absolute inset-0 w-full h-full object-cover z-0" style={{ top: '280px', opacity: videoOpacity }} src={VIDEO_URL} muted playsInline />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-transparent to-[#0a0a0a] z-10" />
@@ -189,27 +195,30 @@ function App() {
         <div className="absolute bottom-10 text-xs tracking-[3px] text-white/40">SCROLL TO EXPLORE</div>
       </header>
 
+      {/* WORK - Original Bento Style */}
       <section id="work" className="max-w-7xl mx-auto px-8 py-20">
         <div className="text-center mb-12">
           <div className="text-[#00e5ff] tracking-[4px] text-xs mb-2">SELECTED WORK</div>
           <h2 className="text-6xl tracking-[-1.5px]" style={{ fontFamily: 'Instrument Serif, Georgia, serif' }}>Four bodies of work.<br />One perspective.</h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="bento-grid">
           {WORK_CATEGORIES.map(cat => (
-            <div key={cat.id} onClick={() => openGallery(cat)} className="group relative aspect-[16/10] rounded-3xl overflow-hidden cursor-pointer border border-white/10 hover:border-white/30">
-              <img src={cat.image} className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.04] transition" />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/70 to-black" />
-              <div className="absolute bottom-0 p-9">
-                <div className="text-xs tracking-[3px] text-white/60 mb-2">{cat.label}</div>
-                <div className="text-5xl tracking-[-1px] font-normal mb-3" style={{ fontFamily: 'Instrument Serif, Georgia, serif' }}>{cat.title}</div>
-                <p className="text-white/75 max-w-xs">{cat.desc}</p>
+            <div 
+              key={cat.id} 
+              onClick={() => openGallery(cat)} 
+              className="bento-item"
+              style={{ backgroundImage: `url(${cat.thumbnail})` }}
+            >
+              <div className="bento-overlay">
+                <span>{cat.title}</span>
               </div>
             </div>
           ))}
         </div>
       </section>
 
+      {/* EXPERIMENTS */}
       <section id="experiments" className="bg-[#111] py-20">
         <div className="max-w-5xl mx-auto px-8 text-center">
           <div className="text-[#00e5ff] tracking-[4px] text-xs mb-2">PLAYGROUND</div>
@@ -228,6 +237,7 @@ function App() {
         </div>
       </section>
 
+      {/* ABOUT */}
       <section id="about" className="max-w-5xl mx-auto px-8 py-24">
         <div className="grid md:grid-cols-5 gap-x-16">
           <div className="md:col-span-2">
@@ -237,7 +247,7 @@ function App() {
           <div className="md:col-span-3 text-[17px] leading-relaxed text-white/80 space-y-6 pt-4">
             <p>I’m a photographer and visual designer with experience spanning commercial advertising, forensic documentation, and generative AI concept development.</p>
             <p>From studio-lit ad sets in Los Angeles to excavation sites across the Pacific — always with a camera and an eye for clarity.</p>
-            <a href="#" className="inline-block mt-4 rounded-full border border-white/30 px-8 py-3 text-sm hover:bg-white hover:text-black">Download Resume</a>
+            <a href="documents/Updated Resume July2025.pdf" target="_blank" className="inline-block mt-4 rounded-full border border-white/30 px-8 py-3 text-sm hover:bg-white hover:text-black">Download Resume</a>
           </div>
         </div>
       </section>
@@ -246,6 +256,7 @@ function App() {
         © {new Date().getFullYear()} SETH COULTER — ALL RIGHTS RESERVED
       </footer>
 
+      {/* Gallery Modal */}
       {selectedCategory && (
         <div className="fixed inset-0 bg-black/95 z-[90] flex items-center justify-center p-6" onClick={closeGallery}>
           <div className="max-w-4xl w-full bg-[#111] rounded-3xl overflow-hidden" onClick={e => e.stopPropagation()}>
