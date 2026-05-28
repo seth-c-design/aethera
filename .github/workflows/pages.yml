@@ -18,7 +18,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      # Opt into Node.js 24 to avoid deprecation warnings
+      # Force Node 24 to avoid deprecation warnings
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
       - name: Checkout
@@ -28,7 +28,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
+          # cache: 'npm'   # Temporarily disabled until package-lock.json is committed
 
       - name: Install dependencies
         run: npm ci
